@@ -58,9 +58,31 @@
     <![endif]-->
 </head>
 <body>
-    <h2 class="text-center">
-        Aether Template
-    </h2>
+    <nav id="aether-nav" role="navigation">
+        <form>
+            <div class="form-group">
+                <div class="input-group">
+                    <span class="input-group-btn dropdown">
+                        <button id="aether-subreddit-dropdown" class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown"
+                                aria-haspopup="true" aria-expanded="true">reddit/r/<i class="fa fa-caret-down fa-fw"></i></button>
+                        <ul class="dropdown-menu" aria-labelledby="aether-subreddit-dropdown">
+                            <li><a href="#">Action</a></li>
+                            <li><a href="#">Another action</a></li>
+                            <li><a href="#">Something else here</a></li>
+                            <li role="separator" class="divider"></li>
+                            <li><a href="#">Separated link</a></li>
+                        </ul>
+                    </span>
+                    <input id="aether-subreddit" type="text" class="form-control" placeholder="subreddit">
+                    <span class="input-group-btn">
+                        <button class="btn btn-primary" type="button"><i class="fa fa-search fa-fw"></i></button>
+                    </span>
+                </div>
+            </div>
+        </form>
+    </nav>
+
+
     <!-- Footer -->
     <footer class="text-center">
         Copyright &copy; 2016 All Rights Reserved
