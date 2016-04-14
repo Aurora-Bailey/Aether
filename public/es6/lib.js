@@ -118,8 +118,12 @@ class Lib {
 
             if(link.match(/^https?:\/\/i?\.?imgur\.com\/a\/[a-z0-9]+$/gi)){// /a/{id} ALBUM
                 $.ajax({
-                    url: imgur_api + '/album/' + imgur_id,
+                    url: imgur_api + '/album/' + imgur_id + '.json',
                     type: 'GET',
+                    headers: {
+                        Authorization: 'Client-ID 1a264d08fe7cd9c',
+                        Accept: 'application/json'
+                    },
                     dataType: 'json',
                     success: function(result){
                         callback({type: 'imgur', data: result.data.images});
@@ -128,8 +132,12 @@ class Lib {
 
             }else if(link.match(/^https?:\/\/i?\.?imgur\.com\/[a-z0-9]+$/gi)){// /{id} ROOT
                 $.ajax({
-                    url: imgur_api + '/image/' + imgur_id,
+                    url: imgur_api + '/image/' + imgur_id + '.json',
                     type: 'GET',
+                    headers: {
+                        Authorization: 'Client-ID 1a264d08fe7cd9c',
+                        Accept: 'application/json'
+                    },
                     dataType: 'json',
                     success: function(result){
                         callback({type: 'imgur', data: [result.data]});
@@ -139,8 +147,12 @@ class Lib {
             }else if(ext == 'gifv'){// {id}.gifv GIFV
                 imgur_id = imgur_id.split('.')[0];// remove .gifv
                 $.ajax({
-                    url: imgur_api + '/image/' + imgur_id,
+                    url: imgur_api + '/image/' + imgur_id + '.json',
                     type: 'GET',
+                    headers: {
+                        Authorization: 'Client-ID 1a264d08fe7cd9c',
+                        Accept: 'application/json'
+                    },
                     dataType: 'json',
                     success: function(result){
                         callback({type: 'imgur', data: [result.data]});
@@ -192,8 +204,7 @@ class Reddit {
             $item.find('.link-reddit').html('<a target="_blank" href="' + reddit_url + '">view on reddit (' + num_comments + ' comments)</a>');
             $item.find('.link-url').html('<a target="_blank" href="' + url + '">origin link - '+ domain +'</a>');
 
-            $item.addClass('hide');
-            Lib.resolveLinkMedia(url, function(media){
+            Lib.resolveLinkMedia(url, (media)=>{
                 if(media.type == 'image'){
                     $item.find('.aether-media').append('<img src="' + media.data[0].link + '">');
                 }else if(media.type == 'imgur'){
@@ -207,13 +218,11 @@ class Reddit {
                             $item.find('.aether-media').append($vid);
                         }
                     });
-                    console.log(media.data);
                 }
 
-                $item.removeClass('hide');
+                // Only append to container if media is found
+                this.$container.append($item);
             });
-
-            this.$container.append($item);
         });
     }
 
