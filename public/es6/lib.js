@@ -198,11 +198,11 @@ class Reddit {
 
             var $item = this.$template.clone();
             $item.find('.title').html(title);
-            $item.find('.subreddit').html(subreddit);
-            $item.find('.author').html(author);
-            $item.find('.score').html(score);
+            $item.find('.subreddit').html('subreddit: ' + subreddit);
+            $item.find('.author').html('op: ' + author);
+            $item.find('.score').html('score: ' + score);
             $item.find('.link-reddit').html('<a target="_blank" href="' + reddit_url + '">view on reddit (' + num_comments + ' comments)</a>');
-            $item.find('.link-url').html('<a target="_blank" href="' + url + '">origin link - '+ domain +'</a>');
+            $item.find('.link-url').html('<a target="_blank" href="' + url + '">view on '+ domain +'</a>');
 
             Lib.resolveLinkMedia(url, (media)=>{
                 if(media.type == 'image'){

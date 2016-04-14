@@ -72,7 +72,7 @@
                             <li onclick="$('#aether-subreddit').val($(this).html()).trigger('submit');">Aww</li>
                         </ul>
                     </span>
-                    <input id="aether-subreddit" type="text" class="form-control" placeholder="subreddit" value="All">
+                    <input id="aether-subreddit" type="text" class="form-control" autocomplete="off" placeholder="subreddit" value="All">
                     <span class="input-group-btn">
                         <button class="btn btn-primary" type="submit"><i class="fa fa-search fa-fw"></i></button>
                     </span>
@@ -85,12 +85,11 @@
 
     </div>
 
-    <div id="aether-templates" class="">
+    <div id="aether-templates" class="hide">
         <!--Main image container-->
         <div class="item">
             <div class="info">
-                <div class="head">
-                    <span class="bubble"><i class="fa fa-question-circle fa-fw"></i></span>
+                <div class="head" onclick="$(this).closest('.info').toggleClass('active');">
                     <span class="title">title</span>
                 </div>
                 <div class="subreddit">Subreddit</div>
