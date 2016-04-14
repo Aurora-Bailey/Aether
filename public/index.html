@@ -66,22 +66,46 @@
                         <button id="aether-subreddit-dropdown" class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown"
                                 aria-haspopup="true" aria-expanded="true">reddit/r/<i class="fa fa-caret-down fa-fw"></i></button>
                         <ul class="dropdown-menu" aria-labelledby="aether-subreddit-dropdown">
-                            <li><a href="#">Action</a></li>
-                            <li><a href="#">Another action</a></li>
-                            <li><a href="#">Something else here</a></li>
-                            <li role="separator" class="divider"></li>
-                            <li><a href="#">Separated link</a></li>
+                            <li onclick="$('#aether-subreddit').val($(this).html()).trigger('submit');">All</li>
+                            <li onclick="$('#aether-subreddit').val($(this).html()).trigger('submit');">Funny</li>
+                            <li onclick="$('#aether-subreddit').val($(this).html()).trigger('submit');">EarthPorn</li>
+                            <li onclick="$('#aether-subreddit').val($(this).html()).trigger('submit');">Aww</li>
                         </ul>
                     </span>
-                    <input id="aether-subreddit" type="text" class="form-control" placeholder="subreddit">
+                    <input id="aether-subreddit" type="text" class="form-control" placeholder="subreddit" value="All">
                     <span class="input-group-btn">
-                        <button class="btn btn-primary" type="button"><i class="fa fa-search fa-fw"></i></button>
+                        <button class="btn btn-primary" type="submit"><i class="fa fa-search fa-fw"></i></button>
                     </span>
                 </div>
             </div>
         </form>
     </nav>
 
+    <div id="aether-content">
+
+    </div>
+
+    <div id="aether-templates" class="">
+        <!--Main image container-->
+        <div class="item">
+            <div class="info">
+                <div class="head">
+                    <span class="bubble"><i class="fa fa-question-circle fa-fw"></i></span>
+                    <span class="title">title</span>
+                </div>
+                <div class="subreddit">Subreddit</div>
+                <div class="author">User</div>
+                <div class="score">Score</div>
+                <div class="link-reddit">Link to Reddit (num comments)</div>
+                <div class="link-url">Link to URL</div>
+                <div class="save">save</div>
+                <div class="share">share</div>
+            </div>
+            <div class="aether-media"></div>
+        </div>
+    </div>
+
+    <button id="aether-load-more" class="btn btn-primary">Load More</button>
 
     <!-- Footer -->
     <footer class="text-center">
