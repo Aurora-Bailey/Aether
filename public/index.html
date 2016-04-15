@@ -65,15 +65,13 @@
                     <span class="input-group-btn dropdown">
                         <button id="aether-subreddit-dropdown" class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown"
                                 aria-haspopup="true" aria-expanded="true">reddit/r/<i class="fa fa-caret-down fa-fw"></i></button>
-                        <ul class="dropdown-menu" aria-labelledby="aether-subreddit-dropdown">
+                        <ul id="aether-subreddit-list" class="dropdown-menu" aria-labelledby="aether-subreddit-dropdown">
                             <li onclick="$('#aether-subreddit').val($(this).html()).trigger('submit');">All</li>
                             <li onclick="$('#aether-subreddit').val($(this).html()).trigger('submit');">Funny</li>
                             <li onclick="$('#aether-subreddit').val($(this).html()).trigger('submit');">Pics</li>
                             <li onclick="$('#aether-subreddit').val($(this).html()).trigger('submit');">EarthPorn</li>
-                            <li onclick="$('#aether-subreddit').val($(this).html()).trigger('submit');">RoomPorn</li>
                             <li onclick="$('#aether-subreddit').val($(this).html()).trigger('submit');">BattleStations</li>
                             <li onclick="$('#aether-subreddit').val($(this).html()).trigger('submit');">Aww</li>
-                            <li onclick="$('#aether-subreddit').val($(this).html()).trigger('submit');">Cats</li>
                         </ul>
                     </span>
                     <input id="aether-subreddit" type="text" class="form-control" autocomplete="off" placeholder="subreddit" value="All">
@@ -106,6 +104,10 @@
             </div>
             <div class="aether-media"></div>
         </div>
+
+        <ul>
+            <li class="subreddit-li" onclick="$('#aether-subreddit').val($(this).html()).trigger('submit');">Cats</li>
+        </ul>
     </div>
 
     <button id="aether-load-more" class="btn btn-primary">Load More</button>

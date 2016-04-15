@@ -180,6 +180,21 @@ class Reddit {
         if(subreddit !== null){
             this.subreddit = subreddit;
             this.page = false;
+
+            this.fetchDescription((results)=>{
+                var description;
+                if(results === 'error'){// Artificial "default" description
+                    description = '/r/All /r/Funny /r/Pics /r/BattleStations /r/Aww';
+                }else{
+                    description = results.data.description_html;
+                }
+                this.descriptionSubreddits(description, (subreddits)=>{
+                    $('#aether-subreddit-list').html('');
+                    subreddits.forEach(function(value){
+                        $('#aether-subreddit-list').append($('#aether-templates').find('.subreddit-li').clone().html(value));
+                    });
+                });
+            });
         }
 
         this.fetchSubreddit((results)=>{
@@ -230,14 +245,58 @@ class Reddit {
         if(this.subreddit === null)
             return false;
 
-        var url = 'https://www.reddit.com/r/' + this.subreddit + '/.json';
+        var url = 'https://www.reddit.com/r/' + this.subreddit + '/.json?raw_json=1&t=year';
 
         if(this.page !== false)
-            url += '?count=25&after=' + this.page;
+            url += '&count=25&after=' + this.page;
 
         $.getJSON(url, function(response){
             callback(response);
         });
+    }
+
+    static fetchDescription(callback){
+        if(this.subreddit === null)
+            return false;
+
+        var url = 'https://www.reddit.com/r/' + this.subreddit + '/about.json';
+
+        $.getJSON(url, function(response){
+            if(typeof response.error == 'undefined')
+                callback(response);
+        }).error(function(){
+            callback('error');
+        });
+    }
+
+    static descriptionSubreddits(description, callback){
+        // pull the subreddits out of the description
+        var subreddits = description.match(/\/r\/[A-Z0-9]+/gi);
+
+        // remove duplicates
+        var subreddits_unique = [];
+        subreddits.forEach(function(value){
+            if(subreddits_unique.indexOf(value) === -1)
+                subreddits_unique.push(value);
+        });
+
+        // remove lowercase if duplicate
+        subreddits_unique.forEach(function(value){
+            if(value.search(/[A-Z]/g) !== -1){
+                var lower_case_version = subreddits_unique.indexOf(value.toLowerCase());
+                if(lower_case_version !== -1)
+                    subreddits_unique[lower_case_version] = '';
+            }
+        });
+
+        // remove the now empty cells, and remove /r/
+        var subreddits_uppercase = [];
+        subreddits_unique.forEach(function(value){
+            if(value != '')
+                subreddits_uppercase.push(value.replace('/r/', '').toUpperCaseFirst());
+        });
+        subreddits_uppercase.sort();
+        callback(subreddits_uppercase);
     }
 }
 Reddit.init();
