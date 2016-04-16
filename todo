@@ -1,0 +1,37 @@
+History
+    push state
+    pop state
+    page load url
+
+Albums
+    is album indicator
+    Snap to center of image
+    left and right arrow keys (physical and onscreen) scroll album
+    description for individual images
+
+Images
+    Flickr API
+
+Gif
+    Gifcat API
+
+
+Imgur thumbnails for mobile
+
+Reddit
+    Allow login
+        homepage is user feed
+        save
+        upvote
+        downvote
+
+Settings
+    Sort/ Top Hot New
+        Time/ hour day week month year all
+    login/out
+
+Infinite scroll
+
+
+Maybe
+    breakout image preview and album view onto a new "page"
