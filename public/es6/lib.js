@@ -184,7 +184,7 @@ class Reddit {
             this.fetchDescription((results)=>{
                 var description;
                 if(results === 'error'){// Artificial "default" description
-                    description = '/r/All /r/Funny /r/Pics /r/BattleStations /r/Aww';
+                    description = '/r/All /r/Aww /r/BattleStations /r/EarthPorn /r/Funny /r/Gaming /r/Gifs /r/Pics /r/RoomPorn';
                 }else{
                     description = results.data.description_html;
                 }
